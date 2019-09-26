@@ -1,0 +1,78 @@
+.customer_signature,.customer_signature2 {
+	border-top: 1px solid #808080;
+	border-bottom: 0px solid #808080;
+}
+
+.customers 
+{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.customers td, .customers th 
+{
+	border: 1px solid #ddd;
+	padding: 5px;
+}
+
+
+
+.customers th 
+{
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	color: #000000;
+	font-weight: normal;
+}
+
+.tot_paid
+{
+	font-size: 50px;
+	color: #C7BFBF;
+	margin-left: 50px;
+	font-weight: normal;
+}
+
+/*print*/
+.page-header, .page-header-space {
+  height: 100px;
+}
+
+.page-footer, .page-footer-space {
+  height: 100px;
+}
+
+.page-header,.page-footer{
+	display: block;
+}
+
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid #dee2e6;
+  margin-top: 5px;
+  margin-bottom: 0px!important;
+}
+
+.page-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-bottom: 2px solid #dee2e6;
+  margin-top: 0px!important;
+}
+
+@media print {
+  .page-header,.page-footer{
+		display: block;
+	}
+   thead {display: table-header-group;} 
+   tfoot {display: table-footer-group;}
+   
+   button {display: none;}
+   
+   body {margin: 0;}
+}
