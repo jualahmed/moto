@@ -30,6 +30,7 @@ new Vue({
 		color:null,
 		chassisno:null,
 		sssssssss:null,
+		isdesable:false,
       };
     },
     methods: {
@@ -41,6 +42,7 @@ new Vue({
 			this.chassisno=null;
     	},
 	    submit(){
+	    	this.isdesable=true;
 	    	this.sssssssss=this.sssssssss+this.total_buy_price;
 	    	var purchase_receipt_id=this.selected1.receipt_id;
 	    	var self=this;
@@ -58,6 +60,7 @@ new Vue({
 	    		self.total_buy_price=0;
 	    		self.quantity=0;
                 self.productinfo=[];
+	    		self.isdesable=false;
 	    	})
 	    	.fail(function() {
 	    		console.log("error");

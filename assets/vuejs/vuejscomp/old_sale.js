@@ -169,16 +169,16 @@ new Vue({
 
 	    },
 	    changefinalamountaextrafee(){
-
-	    	if(this.aforsfee==null){
-	    		this.aforsfee=this.installmentfee;
-	    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
-	    	}else{
-	    		this.finalamount=parseInt(this.finalamount)-parseInt(this.aforsfee);
-	    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
-	    		this.aforsfee=this.installmentfee;
-	    	}
-            
+            if(this.installmentfee!=''){
+    	    	if(this.aforsfee==null){
+    	    		this.aforsfee=this.installmentfee;
+    	    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
+    	    	}else{
+    	    		this.finalamount=parseInt(this.finalamount)-parseInt(this.aforsfee);
+    	    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
+    	    		this.aforsfee=this.installmentfee;
+    	    	}
+            }
 	    },
 	    formatDate(date) {
 		    var d = new Date(date),
@@ -467,6 +467,7 @@ new Vue({
         color:null,
         chassisno:null,
         sssssssss:null,
+        isdesable:false,
       };
     },
     methods: {
@@ -487,6 +488,7 @@ new Vue({
             this.chassisno=null;
         },
         submit(){
+            this.isdesable=true;
             this.sssssssss=this.sssssssss+this.total_buy_price;
             var purchase_receipt_id=this.selected1.receipt_id;
             var self=this;
@@ -504,6 +506,7 @@ new Vue({
                 self.total_buy_price=0;
                 self.quantity=0;
                 self.productinfo=[];
+                self.isdesable=false;
                 swal({
                     title: "Good job!",
                     text: "Purchase Created successfully!",

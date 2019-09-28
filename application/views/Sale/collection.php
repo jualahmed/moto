@@ -184,9 +184,7 @@
 											$t=0;
 										}
 									?>
-										
 											<tr>
-												
 												<td style="width: 15%;" class="text-left">
 													<b>Date :</b> 
 														<?php echo $value ?>
@@ -215,7 +213,7 @@
 														Total: <input name="amount" style="width: 100px;" type="text" value="<?php echo number_format((float)($am)+$invoiceinfo[0]->permonthpay, 2, '.', ''); ?>" disabled>
 														<?php } ?>
 														<?php if ($i==0){ ?>
-															<input type="submit" id="	" onclick="return confirm('Are you sure??')">
+															<input type="submit" id="submitnewinfoice" onclick="return confirm('Are you sure??')">
 														<?php }else{ ?>
 															<input type="submit" disabled>
 														<?php }?>

@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Oldsale extends MY_Controller {
 
 	private $shop_id;

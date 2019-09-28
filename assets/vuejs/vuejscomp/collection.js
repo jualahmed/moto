@@ -1,9 +1,3 @@
-function latefeecalculate(v){
-	var ddd= document.getElementById('latef').value
-	var amount=document.getElementById("permonthpaydd").value;
-	document.getElementById("amount").value=parseFloat(ddd)+parseFloat(amount);
-}
-
 jQuery(document).ready(function($) {
 	$("#submitnewinfoice").click(function(event) {
 		var a = $('#datadddddddd').val();
@@ -11,6 +5,15 @@ jQuery(document).ready(function($) {
 		location.reload();
 	});
 });
+
+
+function latefeecalculate(v){
+	var ddd= document.getElementById('latef').value
+	var amount=document.getElementById("permonthpaydd").value;
+	document.getElementById("amount").value=parseFloat(ddd)+parseFloat(amount);
+}
+
+
 Vue.component('multiselect', window.VueMultiselect.default)
 new Vue({
 	el:"#vuejscom",
@@ -85,7 +88,6 @@ new Vue({
 			this.allmonthdata=null;
 		},
 		incressordesressmonth(id){
-			// console.log(this.month+"  "+this.installmentdate+" "+this.withinterest);
 			$.ajax({
 				url: base_url+'sale/submitincress/'+id,
 				type: 'POST',

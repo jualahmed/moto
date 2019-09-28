@@ -198,7 +198,7 @@
 							<div class="box-footer" style="background: #0f77ab;">
 								<center>
 									<div class="col-sm-22">
-										<button v-if="selected1 && selectedCountries.product_id && quantity==productinfo.length && exclusive_sale_price && general_sale_price" type="button" @click="submit" class="btn btn-success btn-sm" name="search_random" id="submit"><i class="fa fa-fw fa-save"></i> Create</button>
+										<button v-if="!isdesable && selected1 && selectedCountries && selectedCountries.product_id && quantity==productinfo.length && exclusive_sale_price && general_sale_price" type="button" @click="submit" class="btn btn-success btn-sm" name="search_random" id="submit"><i class="fa fa-fw fa-save"></i> Create</button>
 										<button v-else type="button" @click="submit" class="btn btn-success btn-sm" name="search_random" id="submit" disabled><i class="fa fa-fw fa-save"></i> Create</button>
 										<button type="reset" id="reset" class="btn btn-warning btn-sm"><i class="fa fa-fw fa-refresh"></i> Reset</button>
 										<button type="button" id="delete_purchase_invoice" class="btn btn-danger btn-sm"><i class="fa fa-close"></i> Delete</button>

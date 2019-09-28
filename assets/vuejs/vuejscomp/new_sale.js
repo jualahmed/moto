@@ -169,15 +169,17 @@ new Vue({
 	    	}
 	    },
 	    changefinalamountaextrafee(){
-	    	if(this.aforsfee==null){
-	    		this.aforsfee=this.installmentfee;
-	    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
-	    		console.log(this.finalamount);
-	    	}else{
-	    		this.finalamount=parseInt(this.finalamount)-parseInt(this.aforsfee);
-	    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
-	    		this.aforsfee=this.installmentfee;
-	    	}
+	    	if(this.installmentfee!=''){
+		    	if(this.aforsfee==null){
+		    		this.aforsfee=this.installmentfee;
+		    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
+		    		console.log(this.finalamount);
+		    	}else{
+		    		this.finalamount=parseInt(this.finalamount)-parseInt(this.aforsfee);
+		    		this.finalamount=parseInt(this.finalamount)+parseInt(this.installmentfee);
+		    		this.aforsfee=this.installmentfee;
+		    	}
+		    }
 	    },
 	    formatDate(date) {
 		    var d = new Date(date),
