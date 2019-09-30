@@ -80,7 +80,7 @@
     if($user_type!='seller')
     {
     ?>
-      <li class="treeview <?php echo active_link_controller('config') ?> <?php echo active_link_controller('expense') ?>  <?php echo active_link_controller('damageproduct') ?><?php echo active_link_controller('bankcard') ?> <?php echo active_link_controller('comission') ?>  <?php echo active_link_controller('unit') ?> <?php echo active_link_controller('customer') ?> <?php echo active_link_controller('employee') ?> <?php echo active_link_controller('product') ?> <?php echo active_link_controller('distributor') ?> <?php echo active_link_controller('company') ?> <?php echo active_link_controller('category') ?>"  id="setup">
+      <li class="treeview <?php echo active_link_controller('pandingmamo') ?> <?php echo active_link_controller('config') ?> <?php echo active_link_controller('expense') ?>  <?php echo active_link_controller('damageproduct') ?><?php echo active_link_controller('bankcard') ?> <?php echo active_link_controller('comission') ?>  <?php echo active_link_controller('unit') ?> <?php echo active_link_controller('customer') ?> <?php echo active_link_controller('employee') ?> <?php echo active_link_controller('product') ?> <?php echo active_link_controller('distributor') ?> <?php echo active_link_controller('company') ?> <?php echo active_link_controller('category') ?>"  id="setup">
         <a href="#">
           <i class="fa fa-gear"></i>
           <span>Setup</span>
@@ -121,6 +121,9 @@
           </li>
           <li class="<?php echo active_link_function('config','index'); ?>">
               <a href="<?php echo base_url();?>config/index"><i class="fa fa-search-plus"></i>Config</a>
+          </li>
+          <li class="<?php echo active_link_function('pandingmamo','index'); ?>">
+              <a href="<?php echo base_url();?>pandingmamo/index"><i class="fa fa-search-plus"></i>Pending mamo</a>
           </li>
         </ul>
       </li>
