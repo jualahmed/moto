@@ -1,4 +1,22 @@
-<section class="content-3" id="infomsg">
+
+
+
+
+<table style="width: 100%">
+  <thead>
+    <tr>
+      <td>
+        <!--place holder for the fixed-position header-->
+        <div class="page-header-space"></div>
+      </td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <div class="page" style="line-height: 3;">
+			<section class="content-3" id="infomsg">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="box">	 
@@ -226,3 +244,17 @@
 		</div>
 	</div>	
 </section>
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td>
+        <div class="page-footer-space"></div>
+      </td>
+    </tr>
+  </tfoot>
+</table>

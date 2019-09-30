@@ -55,25 +55,22 @@ class Account_model extends CI_model{
 		
 	}
 
-	function get_cash_book_in()
+	public function get_cash_book_in()
 	{
 		$start_date=$this->input->post('start_date');
 		$end_date=$this->input->post('end_date');
-
 		$this->db->select('cash_book.*,transaction_info.transaction_purpose');
 		$this->db->from('cash_book,transaction_info');
 		$this->db->where('cash_book.transaction_id=transaction_info.transaction_id');
 		$this->db->where('cash_book.transaction_type="in"');
 
-		if($start_date!=''){$this -> db -> where('cash_book.date >= "'.$start_date.'"');}
-		if($end_date!=''){$this -> db -> where('cash_book.date <= "'.$end_date.'"');}
-		else if($start_date!=''){$this -> db -> where('cash_book.date <= "'.$start_date.'"');}
-		$this->db->order_by('cash_book.cb_id','asc'); 
-		$this->db->order_by('cash_book.date','asc'); 
+		if($start_date!=''){$this->db->where('cash_book.date >= "'.$start_date.'"');}
+		if($end_date!=''){$this->db->where('cash_book.date <= "'.$end_date.'"');}
+		else if($start_date!=''){$this->db->where('cash_book.date <= "'.$start_date.'"');}
+		$this->db->order_by('cash_book.cb_id','desc'); 
+		$this->db->order_by('cash_book.date','desc'); 
 		$query = $this->db->get();
-		
 		return $query;	
-		
 	} 	
 
 	function get_cash_book_out()

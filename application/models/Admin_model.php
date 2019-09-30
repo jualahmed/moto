@@ -8,6 +8,16 @@ class Admin_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function alltodayinstallment($a='')
+	{	
+		$date=date("Y-m'd");
+		$this->db->where('all_installment.status',1);
+		$this->db->where('all_installment.date',$date);
+		$this->db->join('sells_log', 'sells_log.id = all_installment.sells_log_id');
+		$this->db->join('customer_info', 'customer_info.customer_id = sells_log.customar_id');
+		return $this->db->get('all_installment');
+	}
+
 	public function backup_database()
 	{
 		$bd_date = date('Y-m-d');
