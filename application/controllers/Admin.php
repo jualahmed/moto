@@ -23,6 +23,7 @@ class admin extends MY_controller{
 		$data['user_name'] = $this->tank_auth->get_username();
 		$data['alltodayinstallment'] = $this->admin_model->alltodayinstallment();
 		$data['messsage'] = $this->session->userdata('success');
+		$data['vuejscomp'] = "home.js";
 		$this->__renderview('home', $data);
 	}
 
@@ -40,11 +41,23 @@ class admin extends MY_controller{
 	{
 		$this->session->set_flashdata('success', 'Message send successfully');
 		echo $n;
+		// http://sms.dhost247.net/index.php?number=8801676065851&text=bangladesh
 		redirect('admin','refresh');
 	}
 
 	public function download_database(){
 		$temp = $this->admin_model->backup_database();
 		echo json_encode($temp);
+	}
+
+	public function findinstlalment($id='')
+	{
+		$this->db->where('all_installment_id', $id);
+		$this->db->join('sells_log', 'sells_log.id = all_installment.sells_log_id');
+		$this->db->join('product_info', 'product_info.product_id = sells_log.product_id');
+		$this->db->join('warranty_product_list', 'warranty_product_list.ip_id = sells_log.w_product_id');
+		$this->db->join('customer_info', 'customer_info.customer_id = sells_log.customar_id');
+		$d= $this->db->get('all_installment')->result();
+		echo json_encode($d);
 	}
 }

@@ -1,14 +1,13 @@
 <div class="content-wrapper">
 	<section class="content">
 		<div class="text-right">
-			<a href="<?php echo base_url().'admin/allsmssend' ?>" class="btn btn-success">Send sms</a>
+			<!-- <a href="<?php echo base_url().'admin/allsmssend' ?>" class="btn btn-success">Send sms</a> -->
 			<br>
 			<br>
 		</div>
 		<?php if ($messsage): ?>
-			<h3 class="text-success"><?php echo $messsage; ?></h3>
+			<h3 id="messsages" class="text-success"><?php echo $messsage; ?></h3>
 		<?php endif ?>
-
 		<?php if ($alltodayinstallment->num_rows()>0): ?>
 			<table class="table">
 				<tr>
@@ -26,7 +25,7 @@
 						<td><?php echo $var->customer_contact_no ?></td>
 						<td><?php echo ($var->month-$var->totalkisti)+1 ?></td>
 						<td><?php echo $var->amount ?></td>
-						<td><a href="<?php echo base_url().'admin/singlesmssend/'.$var->customer_contact_no ?>" class="btn btn-sm btn-success">Send sms</a></td>
+						<td><a onclick="sendsms('<?php echo $var->all_installment_id; ?>' , '<?php echo ($var->month-$var->totalkisti)+1; ?>')" class="btn btn-sm btn-success">Send sms</a></td>
 					</tr>
 				<?php endforeach ?>
 			</table>

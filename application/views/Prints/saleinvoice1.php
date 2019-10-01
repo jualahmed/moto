@@ -136,7 +136,7 @@
 										<b>
 											<p><?php echo  $this->bangla_ntw->engToBn(sprintf('%0.2f',$all[0]->price+$all[0]->totalinterastlog+$all[0]->installmentfee)); ?></p>
 											<p><?php echo  $this->bangla_ntw->engToBn(sprintf('%0.2f',$all[0]->advancepay)); ?></p>
-											<p><?php echo  $this->bangla_ntw->engToBn(sprintf('%0.2f',$all[0]->totaldue+$all[0]->totalinterest+$all[0]->discount+$all[0]->screchcard)); ?></p>
+											<p><?php echo  $this->bangla_ntw->engToBn(sprintf('%0.2f',$all[0]->totaldue+$all[0]->totalinterest)); ?></p>
 											<p><?php echo  $this->bangla_ntw->engToBn(sprintf('%0.2f',$all[0]->discount)); ?></p>
 											<p><?php echo  $this->bangla_ntw->engToBn(sprintf('%0.2f',$all[0]->screchcard)); ?></p>
 										</b>
