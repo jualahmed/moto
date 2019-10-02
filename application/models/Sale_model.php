@@ -336,8 +336,8 @@ class Sale_model extends CI_Model {
 			$this->db->update('sells_log');
 		}
 
+		$this->db->where('id',$id);
 		$data=$this->db->get('sells_log')->row();
-
 
 		$configdata=$this->db->get('config')->row();
 		$totalinterest=0;
@@ -347,10 +347,7 @@ class Sale_model extends CI_Model {
 		$totalkisti=0;
 		$gap=0;
 
-
-
 		$donekm=$data->month-$data->totalkisti;
-
 		for ($i=0; $i <$donekm ; $i++) { 
 			array_shift($alldate);
 		}
