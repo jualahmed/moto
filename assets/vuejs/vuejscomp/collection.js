@@ -94,7 +94,6 @@ new Vue({
 				data: {month: this.month,installmentdate:this.installmentdate,withinterest:this.withinterest,installmentfee:this.installmentfee},
 			})
 			.done(function(re) {
-				console.log(re)
 				if(re){
 					swal({
                         title: "Good job!",

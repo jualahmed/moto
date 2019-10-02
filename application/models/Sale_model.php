@@ -320,7 +320,7 @@ class Sale_model extends CI_Model {
 		$this->db->where('id',$id);
 		$data=$this->db->get('sells_log')->row();
 
-		if($data->installmentfee==0){
+		if($data->installmentfee==0 && $installmentfee>0){
 			$this->db->where('id', $id);
 			$this->db->set('installmentfee','installmentfee +'.$installmentfee,FALSE);
 			$this->db->set('finalamount','finalamount +'.$installmentfee,FALSE);
