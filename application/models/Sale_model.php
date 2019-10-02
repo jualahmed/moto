@@ -87,6 +87,17 @@ class Sale_model extends CI_Model {
 			   'creator'        					=> $data['creator'],
 			);
 			$this->db->insert('transaction_info', $installmentfee);
+
+			$cash_book = array(
+			   'cb_id'         						=> '',
+			   'transaction_id'                     => $insert_id,
+			   'transaction_type'                	=> 'in',
+			   'amount'                 			=> $$data['installmentfee'],
+			   'date'         						=> $bd_date,
+			   'status'    	 						=> 'active',
+			   'creator'                   			=> $data['creator'],
+			);
+			$this->db->insert('cash_book', $cash_book);
 		}
 		if($data['price']>0){
 			$sale = array
@@ -315,6 +326,7 @@ class Sale_model extends CI_Model {
 
 	public function updateInstallment($id='',$month,array $alldate,$withinterest='',$installmentfee='')
 	{	
+		$salelogeidddddddddddddddddddddd=$id;
 		$alddddddddd=$alldate;
 		$creator = $this->tank_auth->get_user_id();
 		$this->db->where('id',$id);
@@ -330,6 +342,7 @@ class Sale_model extends CI_Model {
 
 		if (!$withinterest && $data->installmentfee>0) {
 			$currentinstallmentfee=$data->installmentfee;
+			$this->db->where('id', $salelogeidddddddddddddddddddddd);
 			$this->db->set('installmentfee','installmentfee -'.$currentinstallmentfee,FALSE);
 			$this->db->set('finalamount','finalamount -'.$currentinstallmentfee,FALSE);
 			$this->db->set('totaldue','totaldue -'.$currentinstallmentfee,FALSE);
@@ -380,7 +393,17 @@ class Sale_model extends CI_Model {
 					   'status'        						=> 'active',
 					   'creator'        					=> $creator,
 					);
-					$this->db->insert('transaction_info', $totalinterest);
+					$idddddddddd=$this->db->insert('transaction_info', $totalinterest);
+					$cash_book = array(
+					   'cb_id'         						=> '',
+					   'transaction_id'                     => $idddddddddd,
+					   'transaction_type'                	=> 'in',
+					   'amount'                 			=> $installmentfee,
+					   'date'         						=> date("y-m-d"),
+					   'status'    	 						=> 'active',
+					   'creator'                   			=> $creator,
+					);
+					$this->db->insert('cash_book', $cash_book);
     			}
 
     		}else{
@@ -439,7 +462,6 @@ class Sale_model extends CI_Model {
 				}
 			}
 		}
-
 		$this->db->set('totalinterest', $notpaidyetinterst);
 		$this->db->set('totalinterastlog', $totalinterest);
 		$this->db->set('permonthpay', $permonthpay);
@@ -448,7 +470,7 @@ class Sale_model extends CI_Model {
 		$this->db->set('seconddate', $alldate[0]);
 		$this->db->set('alldate', json_encode($alldate));
 		$this->db->set('gap', $gap);
-		$this->db->where('id', $id);
+		$this->db->where('id', $salelogeidddddddddddddddddddddd);
 		return $this->db->update('sells_log'); 
 	}
 }
