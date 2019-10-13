@@ -169,7 +169,7 @@
 								<?php if (isset($paymentnow)): ?>
 									<div class="col-md-12">
 									<br>
-									<b>Previous Installment Due: <?php echo sprintf('%0.2f',$invoiceinfo[0]->totaldue+$invoiceinfo[0]->totalinterest-$invoiceinfo[0]->permonthpay*$invoiceinfo[0]->totalkisti); ?></b>
+									<b>Previous Installment Due: <?php $previousinstallmentdue = sprintf('%0.2f',$invoiceinfo[0]->totaldue+$invoiceinfo[0]->totalinterest-$invoiceinfo[0]->permonthpay*$invoiceinfo[0]->totalkisti); echo $previousinstallmentdue; ?></b>
 									<table class="table">
 									<?php
 										$today=date('Y-m-d');
@@ -197,8 +197,18 @@
 												</td>
 													
 												<td style="width: 40%;">
-														<b></b> <?php $am =0; if($t>0) $am=($invoiceinfo[0]->permonthpay*$perdaylatecost->pardayrate)/100; $am=$am/365;$am=$am*$t; ?>
+													<b></b> <?php $am =0; if($t>0) $am=($invoiceinfo[0]->permonthpay*$perdaylatecost->pardayrate)/100; $am=$am/365;$am=$am*$t; ?>
 													<form style="margin: auto;margin: 0px;"  action="<?php echo base_url().'sale/installmentsubmit/'.$invoiceinfo[0]->sid ?>">
+														Final Discount :
+														<?php 
+															$fiamount=number_format((float)($am)+$invoiceinfo[0]->permonthpay, 2, '.', '');
+														?>
+														<?php if (($i+1)==$invoiceinfo[0]->totalkisti){ ?>
+															<?php $fiamount=$fiamount+$previousinstallmentdue ?>
+															<input style="width: 70px;" onblur="finaldiscounsst()" id="finaldiscount2" name="finaldiscount" type="text" value="0">
+														<?php }else{ ?>
+															<input style="width: 70px;" name="finaldiscount" type="text" value="0" disabled>
+														<?php } ?>
 														Late fee :
 														<?php if ($i==0){ ?>
 															<input id="latef" onblur="latefeecalculate()" style="width: 70px;" name="munisefee" type="text" value="<?php echo number_format((float)$am, 2, '.', '') ?>">
@@ -207,8 +217,8 @@
 														<?php } ?>
 														<input type="hidden" id="datadddddddd" value="<?php echo $invoiceinfo[0]->sid ?>">
 														<?php if ($i==0){ ?>
-															<input type="hidden" id="permonthpaydd" value="<?php echo $invoiceinfo[0]->permonthpay ?>">
-															Total: <input id="amount" name="amount" style="width: 100px;" type="text" value="<?php echo number_format((float)($am)+$invoiceinfo[0]->permonthpay, 2, '.', ''); ?>" >
+															<input type="hidden" id="permonthpaydd" value="<?php echo $fiamount ?>">
+															Total: <input id="amount" name="amount" style="width: 100px;" type="text" value="<?php echo $fiamount ?>" >
 														<?php }else{ ?>
 														Total: <input name="amount" style="width: 100px;" type="text" value="<?php echo number_format((float)($am)+$invoiceinfo[0]->permonthpay, 2, '.', ''); ?>" disabled>
 														<?php } ?>
@@ -233,7 +243,10 @@
 										  <input type="text" v-if="withinterest" v-model="installmentfee" placeholder="Installment fee">
 										<br>
 				              			<ul v-if="installmentdate" style="text-align: center;list-style: none;">
-				              				<li style="display: flex;justify-content: center;" v-for="(i,index) in installmentdate">({{ index+1 }} )  <vuejs-datepicker :format="formatDate" v-model="installmentdate[index]" disabled></vuejs-datepicker> </li>
+				              				<li style="display: flex;justify-content: center;" v-for="(i,index) in installmentdate">
+				              					({{ index+1 }} )
+				              					<vuejs-datepicker :format="formatDate" v-model="installmentdate[index]" disabled></vuejs-datepicker>
+				              				</li>
 				              			</ul>
 					              	</div>
 					              	<button v-if="month==installmentdate.length && isokay" @click.prevent="incressordesressmonth('<?php echo $invoiceinfo[0]->sid ?>')" class="btn btn-success">Submit</button>

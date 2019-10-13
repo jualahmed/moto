@@ -13,6 +13,12 @@ function latefeecalculate(v){
 	document.getElementById("amount").value=parseFloat(ddd)+parseFloat(amount);
 }
 
+function finaldiscounsst(v){
+	var ddd= document.getElementById('finaldiscount2').value
+	var amount=document.getElementById("permonthpaydd").value;
+	document.getElementById("amount").value=parseFloat(amount)-parseFloat(ddd);
+}
+
 
 Vue.component('multiselect', window.VueMultiselect.default)
 new Vue({

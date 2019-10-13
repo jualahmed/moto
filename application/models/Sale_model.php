@@ -189,12 +189,20 @@ class Sale_model extends CI_Model {
 		$array=array();
 		$munisefee=$this->input->get('munisefee');
 		$amount=$this->input->get('amount');
+		$finaldiscount=$this->input->get('finaldiscount');
 		if($munisefee>0){
 			$amount=$amount-$munisefee;
 		}
 		$this->db->where('id',$id);
 		$data=$this->db->get('sells_log')->row();
 
+		if($finaldiscount>0){
+			$this->db->set('discount', 'discount+'.$finaldiscount,FALSE);
+			$this->db->set('finalamount', 'finalamount-'.$finaldiscount,FALSE);
+			$this->db->set('totaldue', 'totaldue-'.$finaldiscount,FALSE);
+			$this->db->where('id', $id);
+			$this->db->update('sells_log'); 
+		}
 
 		$this->db->where('date', $data->seconddate);
 		$this->db->where('sells_log_id', $data->id);
