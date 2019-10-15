@@ -96,6 +96,7 @@
 						  <td title="Purchase Quantity">Quantity</td>
 						  <td>BP</td>
 						  <td>batteryno</td>
+						  <td>Edit</td>
 						</tr>
 						<tr v-for="(a,index) in alldata">
 						  <td>{{index+1}}</td>
@@ -110,6 +111,7 @@
 						  <td title="Purchase Quantity">1</td>
 						  <td>{{ a.purchase_price }}</td>
 						  <td>{{ a.batteryno }} </td>
+						  <td><a href="" data-toggle="modal" @click="editthisproduct(a.ip_id)" data-target="#EditModel" class="sdfsdfsdf btn btn-sm btn-success" >Edit</a></td>
 						</tr>
 						<tr>
 							<td colspan="10"><b></b></td>
@@ -122,4 +124,60 @@
 			</div>
 		</div>	
 	</section> 
+</div>
+
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="EditModel" tabindex="-1" role="dialog" aria-labelledby="EditModelLabel" aria-hidden="true">
+    <form id="customerupdate" action="<?php echo base_url();?>product/w_p_update" method="post" class="form-horizontal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <div class="row">
+	        	<div class="col-md-6">
+	        		<h3 class="modal-title" id="EditModelLabel">Edit customer</h3>
+	        	</div>
+	        	<div class="col-md-6">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+	        	</div>
+	        </div>
+	      </div>
+	      <div class="modal-body">
+			<div class="box-body">
+				<div class="row">
+					<div class="col-md-6 left">
+						<input type="hidden" name="ip_id" id="ip_id">
+						<div class="form-group">
+							<label class="form-control-label">Engning no <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" name="engineno" id="engineno">
+						</div>	
+						<div class="form-group">
+							<label for="inputEmail3" class="control-label">Chassis no <span class="text-danger">*</span></label>
+							<input type="text" name="chassisno" id="chassisno" class="form-control">
+						</div>
+					</div>
+					<div class="col-md-6 right">
+						<div class="form-group">
+							<label class="form-control-label">Color</label>
+							<input type="text" name="color" id="color" class="form-control">
+						</div>
+						<div class="form-group">
+							<label class="form-control-label">Battry NO <span class="text-danger">*</span></label>
+							<input type="text" name="batteryno" id="batteryno" class="form-control">
+						</div>
+					</div>
+				</div>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-success" name="search_random" id="submit_btn"><i class="fa fa-fw fa-save"></i> Update</button>
+			<button type="reset" id="reset_btn" class="btn btn-warning"><i class="fa fa-fw fa-refresh"></i> Reset</button>
+	      </div>
+	    </div>
+	  </div>
+  </form>
 </div>

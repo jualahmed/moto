@@ -146,6 +146,66 @@ class Product extends MY_Controller {
 		echo json_encode($data);
 	}
 
+	public function w_p_update()
+	{
+		$jsonData = array('errors' => array(), 'success' => false, 'check' => false, 'output' => '');
+	    $rules = array(
+	      array(
+	        'field' => 'engineno',
+	        'label' => 'engineno',
+	        'rules' => 'required'
+	      ),
+	      array(
+	        'field' => 'chassisno',
+	        'label' => 'chassisno',
+	        'rules' => 'required'
+	      ),
+	      array(
+	        'field' => 'color',
+	        'label' => 'color',
+	        'rules' => 'required'
+	      ),
+	      array(
+	        'field' => 'batteryno',
+	        'label' => 'batteryno',
+	        'rules' => 'required'
+	      ),
+	    );
+	    $ip_id=$this->input->post('ip_id');
+		$creator = $this->tank_auth->get_user_id();
+	    $this->form_validation->set_rules($rules);
+	    $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
+	    if ($this->form_validation->run() == TRUE) {
+	      $jsonData['check'] = true;
+	      $data = array(
+	        'engineno' => $this->input->post('engineno'),
+	        'chassisno' => $this->input->post('chassisno'),
+	        'color' => $this->input->post('color'),
+	        'batteryno' => $this->input->post('batteryno')
+	      );
+	      $this->db->where('ip_id', $ip_id);
+	      $id=$this->db->update('warranty_product_list', $data);
+	      $output = '';
+	      if ($id) {
+	        $jsonData['success'] = true;
+	        $jsonData['id'] = $ip_id;
+	      }
+	    }else {
+	      foreach ($_POST as $key => $value) {
+	        $jsonData['errors'][$key] = form_error($key);
+	      }
+	    }
+	    echo json_encode($jsonData);
+	}
+
+	public function find_worranty()
+	{	
+		$id=$this->input->post('id');
+		$this->db->where('ip_id', $id);
+		$data=$this->db->get('warranty_product_list')->row();
+		echo json_encode($data);
+	}
+
 	public function update()
 	{
 		$jsonData = array('errors' => array(), 'success' => false, 'check' => false, 'output' => '');

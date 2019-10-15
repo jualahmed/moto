@@ -1,3 +1,5 @@
+
+
 new Vue({
   el:"#vuejsapp",
   data:{
@@ -15,6 +17,21 @@ new Vue({
     end_date:0,
   },
   methods:{
+    editthisproduct(id){
+      $.ajax({
+        url: base_url+'/product/find_worranty',
+        type: 'POST',
+        data: {id: id},
+      })
+      .done(function(re) {
+        var re = jQuery.parseJSON(re);
+        $("#engineno").val(re.engineno);
+        $("#chassisno").val(re.chassisno);
+        $("#color").val(re.color);
+        $("#batteryno").val(re.batteryno);
+        $("#ip_id").val(re.ip_id);
+      })
+    },
     purchase_report(){
       this.start_date=($("#datepickerrr").val());
       this.end_date=($("#datepickerr").val());
@@ -49,3 +66,40 @@ new Vue({
     }
   }
 })
+
+
+$('#customerupdate').submit(function (e){
+    e.preventDefault();
+    var data = $(this).serialize();
+    $.ajax({
+        url: $(this).attr('action'),
+        method: 'post',
+        data: data,
+        dataType: 'json',
+        success: function (res){
+            console.log(res)
+            if (res.check == true) {
+                $('#customerupdate').find('div.form-group').removeClass('has-error').removeClass('has-success');
+                $('#customerupdate').find('p.text-danger').remove();
+                if (res.success == true) {
+                    $('#customerupdate')[0].reset();
+                    $('#customerupdate').modal('hide');
+                    swal({
+                        title: "Good job!",
+                        text: "Product updated successfully!",
+                        icon: "success",
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                }
+            }else {
+                $.each(res.errors, function (key, value){
+                    var el = $('#'+key);
+                    el.removeClass('has-error').addClass(value.length > 0 ? 'has-error':'has-success').siblings('p.text-danger').remove();
+                    el.after(value);
+                });
+            }
+        }
+    });
+});
