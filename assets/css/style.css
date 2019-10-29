@@ -1,6 +1,4 @@
-*{
-  text-transform: capitalize!important;
-}
+
 .table th,td{
   white-space: nowrap!important;
 }

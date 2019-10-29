@@ -226,13 +226,6 @@
 								<input type="text" name="district" class="form-control district" placeholder="district">
 							</div>
 
-							<!-- <div class="form-group">
-							   <label for="inputEmail3" class="control-label">Customer id</label>
-								<input type="number" name="id" class="form-control" placeholder="Customar id">
-							</div> -->
-
-						
-
 						</div>
 					</div>
 				</div>
