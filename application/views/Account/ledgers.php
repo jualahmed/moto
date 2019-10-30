@@ -106,7 +106,7 @@
 		</div>
 	</section>
 
-	<section class="content infomsg" id="infomsg">
+	<section class="content infomsg" id="infomsg" v-if="purpose_id==1">
 		<div class="row">
 			<div class="col-md-6">
 				<h2>Sale</h2>
@@ -115,13 +115,11 @@
 						<td>Date</td>
 						<td>Purpose</td>
 						<td>Total Amount</td>
-						<td>Paid Amount</td>
 					</tr>
 					<tr v-for="v in alldata['total_sale']">
 						<td>{{ v.date }}</td>
 						<td>{{ v.transaction_purpose }}</td>
 						<td>{{ v.amount }}</td>
-						<td>{{ v.paid }}</td>
 					</tr>
 				</table>
 			</div>
@@ -132,13 +130,11 @@
 						<td>Date</td>
 						<td>Purpose</td>
 						<td>Total Amount</td>
-						<td>Paid Amount</td>
 					</tr>
 					<tr v-for="v in alldata['total_collection']">
 						<td>{{ v.date }}</td>
 						<td>{{ v.transaction_purpose }}</td>
 						<td>{{ v.amount }}</td>
-						<td>{{ v.paid }}</td>
 					</tr>
 				</table>
 			</div>

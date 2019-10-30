@@ -259,17 +259,17 @@ class Account extends MY_controller{
 		if($purpose_id ==1)
 		{
 			$sale_details = $this->account_model->all_sale($new_date,$end,$customer_id);
-			$ledger_list2['total_sale'] = $sale_details->result_array();
+			if($sale_details!=FALSE)$ledger_list['total_sale'] = $sale_details->result_array();
 			$collection_details = $this->account_model->all_collection($new_date,$end,$customer_id);
-			$ledger_list2['total_collection'] = $collection_details->result_array();
-			echo json_encode($ledger_list2);
+			if($collection_details!=FALSE)$ledger_list['total_collection'] = $collection_details->result_array();
+			echo json_encode($ledger_list);
 		}
 		elseif($purpose_id ==2)
 		{
 			$sale_details = $this->account_model->all_sale($new_date,$end,$customer_id);
-			$ledger_list['total_sale'] = $sale_details->result_array();
+			if($sale_details!=FALSE)$ledger_list['total_sale'] = $sale_details->result_array();
 			$collection_details = $this->account_model->all_collection($new_date,$end,$customer_id);
-			$ledger_list['total_collection'] = $collection_details->result_array();
+			if($sale_details!=FALSE)$ledger_list['total_collection'] = $collection_details->result_array();
 			echo json_encode($ledger_list);
 		}
 	}

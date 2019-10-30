@@ -1832,6 +1832,7 @@ class Account_model extends CI_model{
 			return false;
 		}
 	}
+	
 	public function all_sale_return($start,$end,$customer_id)
 	{
 		$this->db->select('transaction_info.transaction_id,transaction_info.transaction_purpose,transaction_info.amount,transaction_info.remarks,transaction_info.transaction_mode,transaction_info.date,customer_info.customer_name');
