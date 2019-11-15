@@ -129,7 +129,6 @@
 }
 .content-wrapper{
   overflow: hidden!important;
-  min-height: 88vh!important;
 }
 .main-header{
       max-height: 14vh!important;

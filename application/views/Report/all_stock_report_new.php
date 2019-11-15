@@ -43,7 +43,7 @@
 							<div class="form-group">
 								  <label for="inputEmail3" class="col-sm-1 control-label">Type<span>*</span></label>
 								  <div class="col-sm-2">
-										<select class="form-control select2" name="type_wise" v-model="type" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;" id="type_wise" tabindex="-1" aria-hidden="true" required>
+										<select class="form-control select2" name="type_wise" v-model="type_wise" style="font-family:Helvetica Neue,Helvetica,Arial,sans-serif;" id="type_wise" tabindex="-1" aria-hidden="true" required>
 											<option value="0">Select Type</option>
 											<option value="available">Available Stock</option>
 											<option value="not_available">Not Available Stock</option>
@@ -67,33 +67,29 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<div class="modal preload" style="display: none">
-		<div class="center">
-			<img src="<?php echo base_url();?>assets/assets2/spin.gif" id="loaderIcon"/>
-		</div>
-	</div>
-	<table class="table table-secondary" v-if="alldata.length>0">
-		<tr>
-			<th>No.</th>
-			<th>Product.</th>
-			<th>Stock.</th>
-			<th>BP.</th>
-			<th>SP.</th>
-		</tr>
-		<tr v-for="(d,index) in alldata">
-			<td>{{ index+1 }}</td> 
-			<td>{{ d.product_name }}</td>
-			<td>{{ d.stock_amount }}</td>
-			<td>{{ d.bulk_unit_buy_price }}</td>
-			<td>{{ d.general_unit_sale_price }}</td>
-		</tr>
-		<tr>
-			<td colspan="2"><b></b></td>
-			<td colspan="1"><b>Total Quantity: {{ stockqty }}</b> </td>
-			<td colspan="1"><b>Total Stock Amount: {{ amount }}</b></td>
-			<td colspan="1"><b>Total Sale Amount: {{ samount }}</b></td>
-		</tr>
-	</table>
-	<h2 class="text-danger text-center" v-else>Result is Empty</h2>
+    
+  	<table class="table table-secondary" v-if="alldata.length>0">
+  		<tr>
+        <th>No</th>
+        <th>Product</th>
+        <th title="Purchase Quantity">Quantity</th>
+  			<th>BP.</th>
+  			<th>SP.</th>
+  		</tr>
+  		<tr v-for="(d,index) in alldata">
+  			<td>{{ index+1 }}</td> 
+        <td>{{ d.product_name }}</td>
+  			<td>{{ d.stock_amount }}</td>
+  			<td>{{ d.bulk_unit_buy_price }}</td>
+  			<td>{{ d.general_unit_sale_price }}</td>
+  		</tr>
+  		<tr>
+  			<td colspan="2"><b></b></td>
+  			<td colspan="1"><b>Total Quantity: {{ stockqty }}</b> </td>
+  			<td colspan="1"><b>Total Stock Amount: {{ amount }}</b></td>
+  			<td colspan="1"><b>Total Sale Amount: {{ samount }}</b></td>
+  		</tr>
+  	</table>
+  	<h2 class="text-danger text-center" v-else>Result is Empty</h2>
+  </section>
 </div>

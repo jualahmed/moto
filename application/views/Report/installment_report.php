@@ -31,7 +31,7 @@
 			</div>
 		</div>
 	</section>
-	<section>
+	<section class="content">
 		<div class="table-responsive" v-if="alldata.length">          
 			<table class="table">
 				<thead>

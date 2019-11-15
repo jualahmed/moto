@@ -27,7 +27,7 @@ class Report extends MY_controller
 	
 	public function stock_report()
 	{
-	   	$data['user_type'] = $this->tank_auth->get_usertype();
+	  $data['user_type'] = $this->tank_auth->get_usertype();
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');
@@ -87,18 +87,37 @@ class Report extends MY_controller
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');
-			$data['bd_date'] = $bd_date;
-			$data['sale_status'] = '';
-			$data['alarming_level'] = FALSE;
-			$data['last_id'] = $this->product_model->getLastInserted();
-			$data['user_name'] = $this->tank_auth->get_username();
-			$data['posts']= array();
+      $data['bd_date'] = $bd_date;
+      $data['sale_status'] = '';
+      $data['alarming_level'] = FALSE;
+      $data['last_id'] = $this->product_model->getLastInserted();
+      $data['user_name'] = $this->tank_auth->get_username();
+      $data['status'] = '';
+      $data['company'] = $this->company_model->all();
+      $data['product'] = $this->product_model->all();
+      $data['catagory'] = $this->category_model->all();
+      $data['product_specification'] = $this->product_model->product_specification();
+      $data['total_stock_price'] = $this->site_model->total_stock_price();
+      $data['total_stock_sale_price'] = $this->site_model->total_stock_sale_price();
+      $data['total_stock_quantity'] = $this->site_model->total_stock_quantity();
+      $data['product_type'] = $this->product_model->product_type();
+      $data['unit_name'] = $this->product_model->unit_name();
+      $data['posts']= array();
 			$data['reportdata']=$this->report_model->stock_details();
 			$data['vuejscomp'] = 'stock_details.js';
 			$this->__renderview('Report/stock_details', $data);
 		}
 		else redirect('Product/product/noaccess');
 	}
+
+  public function stock_details_json()
+  {
+    $catagory_id= $this->input->post('catagory_id');
+    $product_id= $this->input->post('product_id');
+    $company_id=$this->input->post('company_id');
+    $reportdata=$this->report_model->stock_details($catagory_id,$product_id,$company_id);
+    echo json_encode($reportdata);
+  }
 
 	public function stock_details_print()
 	{
@@ -268,7 +287,7 @@ class Report extends MY_controller
 	public function installment_report_print($value='')
 	{	
 		$start_date= $this->uri->segment(3);
-		 $end_date=$this->uri->segment(4);
+		$end_date=$this->uri->segment(4);
 		$data['temp2'] = $this->report_model->installment_report_response($start_date,$end_date);
 		$this->__renderviewprint('Prints/report/installment_report', $data);
 	}
@@ -280,10 +299,73 @@ class Report extends MY_controller
 		echo json_encode($result);
 	}
 
+  public function customer_sale_report()
+  {
+    $data['user_type'] = $this->tank_auth->get_usertype();
+    if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
+    {
+      $bd_date = date('Y-m-d');
+      $data['bd_date'] = $bd_date;
+      $data['sale_status'] = '';
+      $data['alarming_level'] = FALSE;
+      $data['last_id'] = $this->product_model->getLastInserted();
+      $data['user_name'] = $this->tank_auth->get_username();
+      $data['status'] = '';
+      $data['product_specification'] = $this->product_model->product_specification();
+      $data['vuejscomp'] = 'customer_report.js';
+      $data['customer']=$this->customer_model->all();
+      $this->__renderview('Report/customer_sale_report', $data);
+    }
+  }
 
+  public function customer_report_response()
+  {
+    $customer_id=$this->input->post('customer_id');
+    $temp2 = $this->report_model->customer_report_response($customer_id);
+    echo json_encode($temp2);
+  }
 
+  public function income_report()
+  {
+    $data['user_type'] = $this->tank_auth->get_usertype();
+    if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
+    {
+      $bd_date = date('Y-m-d');
+      $data['bd_date'] = $bd_date;
+      $data['sale_status'] = '';
+      $data['alarming_level'] = FALSE;
+      $data['last_id'] = $this->product_model->getLastInserted();
+      $data['user_name'] = $this->tank_auth->get_username();
+      $data['status'] = '';
+      $data['product_specification'] = $this->product_model->product_specification();
+      $data['vuejscomp'] = 'income_report.js';
+      $this->__renderview('Report/income_report', $data);
+    }
+    else redirect('Product/product/noaccess');
+  }
+
+  public function income_report_response()
+  {
+    $start_date=$this->input->post('start_date');
+    $end_date=$this->input->post('end_date');
+    $temp2 = $this->report_model->income_report_response($start_date,$end_date);
+    echo json_encode($temp2);
+  }
 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// old report code not clean yet
 	public function scb_report()
 	{

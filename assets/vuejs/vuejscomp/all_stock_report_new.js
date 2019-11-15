@@ -11,6 +11,7 @@ new Vue({
     type:0,
     amount:0,
     samount:0,
+    type_wise:'all',
   },
   methods:{
     stockreport(){

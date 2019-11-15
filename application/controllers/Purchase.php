@@ -8,7 +8,8 @@ class Purchase extends MY_Controller
 		$this->shop_id = $this->tank_auth->get_shop_id();
 		$this->is_logged_in();
 		$this->load->model('purchase_model');
-		$this->load->model('distributor_model');
+    $this->load->model('distributor_model');
+		$this->load->model('purchaselisting_model');
 	}
 
 	public function is_logged_in()
@@ -351,4 +352,16 @@ class Purchase extends MY_Controller
 		redirect('purchase/purchase_return/null/null/success');
 
 	}
+
+  public function removeProductFromPurchase()
+  {
+    $purchase_receipt_id    = $this->input->post('purchase_receipt_id');
+    $product_id       = $this->input->post('pro_id');
+    $purchase_id      = $this->input->post('purchase_id');
+    if($purchase_receipt_id != '' && $product_id != '' && is_numeric($purchase_receipt_id) && is_numeric($product_id))
+    { 
+      $data = $this->purchaselisting_model->removeProductFromPurchase($purchase_receipt_id, $product_id,$purchase_id);
+      echo $data;
+    }
+  }
 }

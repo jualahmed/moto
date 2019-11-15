@@ -274,6 +274,9 @@
             <li class="<?php echo active_link_function('Report','purchase_report'); ?>">
               <a href="<?php echo base_url();?>Report/purchase_report"><i class="fa fa-search-plus"></i>Purchase Report</a>
             </li>
+            <li class="<?php echo active_link_function('Report','income_report'); ?>">
+              <a href="<?php echo base_url();?>Report/income_report"><i class="fa fa-search-plus"></i>Income Report</a>
+            </li>
             <li class="<?php echo active_link_function('Report','sale_report'); ?>">
               <a href="<?php echo base_url();?>Report/sale_report"><i class="fa fa-search-plus"></i>Sale Report</a>
             </li>
@@ -283,7 +286,9 @@
             <li class="<?php echo active_link_function('Report','delivery_charge_report'); ?>">
               <a href="<?php echo base_url();?>Report/delivery_charge_report"><i class="fa fa-search-plus"></i>Delivery Charge Report</a>
             </li>
-          
+            <li class="<?php echo active_link_function('Report','customer_sale_report'); ?>">
+              <a href="<?php echo base_url();?>Report/customer_sale_report"><i class="fa fa-search-plus"></i>Customer Sale Report</a>
+            </li>
             <li class="<?php echo active_link_function('Report','credit_collection_report_new'); ?>">
               <a href="<?php echo base_url();?>Report/credit_collection_report_new"><i class="fa fa-search-plus"></i>Credit Collection Report </a>
             </li>
