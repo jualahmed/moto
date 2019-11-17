@@ -125,40 +125,9 @@ class Report extends MY_controller
 		$this->__renderviewprint('Prints/report/stock_details', $data);
 	}
 
-	public function warranty_stock_report()
-	{
-	   $data['user_type'] = $this->tank_auth->get_usertype();
-		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
-		{
-			$bd_date = date('Y-m-d');
-			$data['bd_date'] = $bd_date;
-			$data['sale_status'] = '';
-			$data['alarming_level'] = FALSE;
-			$data['last_id'] = $this->product_model->getLastInserted();
-			$data['user_name'] = $this->tank_auth->get_username();
-			$data['status'] = '';
-			$data['purchase_receipt_info'] = $this ->product_model-> all();
-			$data['distributor_info'] = $this->product_model->distributor_info();
-			$data['company_name'] = $this->product_model->company_name();
-			$data['catagory_name'] = $this->product_model->catagory_name();
-			$data['product_specification'] = $this->product_model->product_specification();
-			$this->load->model('product_model');
-			$data['total_stock_price'] = $this->site_model->total_stock_price();
-			$data['total_stock_sale_price'] = $this->site_model->total_stock_sale_price();
-			$data['total_stock_quantity'] = $this->site_model->total_stock_quantity();
-			$data['product_type'] = $this->product_model->product_type();
-			$data['unit_name'] = $this->product_model->unit_name();
-			
-			$data['posts']= array();
-			$data['vuejscomp'] = 'all_warranty_stock_report_new.js';
-			$this->__renderview('Report/all_warranty_stock_report_new', $data);
-		}
-		else redirect('Product/product/noaccess');
-	}
-
 	public function  purchase_report()
 	{
-	   $data['user_type'] = $this->tank_auth->get_usertype();
+	  $data['user_type'] = $this->tank_auth->get_usertype();
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');

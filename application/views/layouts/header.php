@@ -268,9 +268,7 @@
              <li class="<?php echo active_link_function('Report','stock_details'); ?>">
               <a href="<?php echo base_url();?>Report/stock_details"><i class="fa fa-search-plus"></i>Stock Details</a>
             </li>
-            <li class="<?php echo active_link_function('Report','warranty_stock_report'); ?>" style="display: none;">
-              <a href="<?php echo base_url();?>Report/warranty_stock_report"><i class="fa fa-search-plus"></i>Warranty Stock Report</a>
-            </li>
+   
             <li class="<?php echo active_link_function('Report','purchase_report'); ?>">
               <a href="<?php echo base_url();?>Report/purchase_report"><i class="fa fa-search-plus"></i>Purchase Report</a>
             </li>

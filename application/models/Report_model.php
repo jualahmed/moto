@@ -56,15 +56,10 @@ class Report_model extends CI_model{
 
 	public function stock_details($catagory_id='',$product_id='',$company_id='')
 	{	
-    // if (isset($catagory_id)) {
-    //   $this->db->where('product_info.catagory_id', $catagory_id);
-    // }
+    
     if (isset($product_id)) {
       $this->db->where('warranty_product_list.product_id', $product_id);
     }
-    // if (isset($company_id)) {
-    //   $this->db->where('product_info.company_id', $company_id);
-    // }
     
 		$this->db->where('status', 0);
 		$this->db->join('product_info', 'product_info.product_id = warranty_product_list.product_id');
