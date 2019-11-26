@@ -73,11 +73,11 @@
 			</div>
 		</div>
 	</section>
-	<div class="modal preload" style="display: none">
-		<div class="center">
-			<img src="<?php echo base_url();?>assets/img/spin.gif" id="loaderIcon"/>
-		</div>
-	</div>
+	 
+   <div class="text-center" v-if="loding">
+        <img src="<?php echo base_url();?>assets/img/LoaderIcon.gif" id="loaderIcon"/>
+    </div>
+
 	<section class="content-3" id="infomsg">
 		<div class="row">
 			<div class="col-md-12">

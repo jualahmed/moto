@@ -15,6 +15,7 @@ new Vue({
     distributor_id:0,
     start_date:0,
     end_date:0,
+    loding:false,
   },
   methods:{
     editthisproduct(id){
@@ -38,6 +39,7 @@ new Vue({
       var self=this;
       self.stockqty=0;
       self.amount=0;
+      self.loding=!self.loding;
       self.samount=0;
       this.alldata=[]
         $.ajax({
@@ -47,6 +49,7 @@ new Vue({
         data: {receipt_id:this.receipt,product_id:this.product,catagory_id:this.category,company_id:this.company,distributor_id:this.distributor_id,start_date:this.start_date,end_date:this.end_date},
         success: function(result) { 
           self.alldata=result;
+          self.loding=!self.loding;
           result.forEach( function(element, index) {
            self.stockqty=parseInt(self.stockqty)+parseInt(1);
            self.amount=parseInt(self.amount)+parseInt((element.general_unit_sale_price));

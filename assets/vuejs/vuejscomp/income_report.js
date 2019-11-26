@@ -5,12 +5,14 @@ new Vue({
     alldata:[],
     startdate:'',
     enddate:'',
+    loding:false,
   },
   methods:{
     result(){
       this.startdate=($("#datepickerrr").val());
       this.enddate=($("#datepicker").val());
       var self=this;
+      self.loding=!self.loding;
       alldata:[];
       $.ajax({
       url: base_url+'Report/income_report_response',
@@ -18,6 +20,7 @@ new Vue({
       dataType: 'json',
       data: $('#salereport').serialize(),
       success: function(result) {
+        self.loding=!self.loding;
         self.alldata=result;
       }
     });

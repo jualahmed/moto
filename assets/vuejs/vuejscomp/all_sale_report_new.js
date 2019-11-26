@@ -10,6 +10,7 @@ new Vue({
     end_date:0,
     amount:0,
     samount:0,
+    loding:false,
   },
   methods:{
     result(){
@@ -18,6 +19,7 @@ new Vue({
       this.amount=0;
       this.samount=0;
       var self=this;
+      self.loding=!self.loding;
       alldata:[];
       $.ajax({
       url: base_url+'Report/all_sale_report_find',
@@ -26,6 +28,7 @@ new Vue({
       data: {invoice_id:this.invoice_id,customer_id:this.customer_id,product_id:this.product_id,id:this.seller_id,start_date:this.start_date,end_date:this.end_date},
       success: function(result) { 
         self.alldata=result;
+        self.loding=!self.loding;
           result.forEach( function(element, index) {
            self.amount=parseInt(self.amount)+parseInt(element.price)+parseInt(element.installmentfee)+parseInt(element.totalinterastlog);
            self.samount=parseInt(self.samount)+parseInt((element.totaldue))+parseInt(element.totalinterest);

@@ -65,7 +65,12 @@
 			</div>
 		</div>
 	</section>
-	<section>
+  
+  <div class="text-center" v-if="loding">
+    <img src="<?php echo base_url();?>assets/img/LoaderIcon.gif" id="loaderIcon"/>
+  </div>
+
+	<section class="content">
 		<div class="table-responsive" v-if="alldata.length">          
 			<table class="table">
 				<thead>

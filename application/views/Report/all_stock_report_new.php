@@ -67,7 +67,11 @@
 				</div>
 			</div>
 		</div>
-    
+        
+    <div class="text-center" v-if="loding">
+        <img src="<?php echo base_url();?>assets/img/LoaderIcon.gif" id="loaderIcon"/>
+    </div>
+
   	<table class="table table-secondary" v-if="alldata.length>0">
   		<tr>
         <th>No</th>

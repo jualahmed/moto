@@ -12,6 +12,7 @@ new Vue({
     amount:0,
     samount:0,
     type_wise:'all',
+    loding:false,
   },
   methods:{
     stockreport(){
@@ -23,6 +24,7 @@ new Vue({
       var self=this;
       self.stockqty=0;
       self.amount=0;
+      self.loding=!self.loding;
       self.samount=0;
      $.ajax({
       url:  $('#form_2').attr('action'),
@@ -31,6 +33,7 @@ new Vue({
       data: {catagory_id:this.catagory_id,product_id:this.product_id,company_id:this.company_id,type_wise:this.type_wise,product_amount:this.amount},
       success: function(result) { 
         self.alldata=result;
+        self.loding=!self.loding;
         result.forEach( function(element, index) {
          self.stockqty=parseInt(self.stockqty)+parseInt(element.stock_amount);
          self.amount=parseInt(self.amount)+parseInt((element.stock_amount*element.bulk_unit_buy_price));
