@@ -13,7 +13,7 @@
                 <label for="inputEmail3" class="col-sm-1 control-label">Customer</label>
                 <div class="col-sm-2">
                   <select name="customer_name" v-model="customer_id" id="" class="form-control select2">
-                    <option value="">Select a Customer</option>
+                    <option value="0">Select a Customer</option>
                     <?php foreach ($customer as $key => $var): ?>
                       <option value="<?php echo $var->customer_id ?>"><?php echo $var->customer_name ?></option>
                     <?php endforeach ?>
@@ -34,7 +34,12 @@
       </div>
     </div>
   </section>
-  <section>
+    
+    <div class="text-center" v-if="loding">
+        <img src="<?php echo base_url();?>assets/img/LoaderIcon.gif" id="loaderIcon"/>
+    </div>
+
+  <section class="content">
     <div class="table-responsive" v-if="alldata.length">          
       <table class="table">
         <thead>
@@ -64,7 +69,7 @@
             <td>{{ i.product_name }}</td>
             <td>{{ i.customer_name }}</td>
             <td>{{ i.customer_contact_no }}</td>
-            <td>{{ formatDate(i.payment_date) }}</td>
+            <td>{{ i.payment_date }}</td>
             <td>{{ i.amount }}</td>
             <td>{{ i.engineno }}</td>
             <td>{{ i.chassisno }}</td>

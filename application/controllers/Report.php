@@ -253,6 +253,14 @@ class Report extends MY_controller
 		echo json_encode($temp2);
 	}
 
+    public function deleteinstallment($id='')
+    {
+        $this->db->set('status',0);
+        $this->db->where('all_installment_id', $id);
+        $this->db->update('all_installment');
+        return redirect('report/installment_report','refresh');
+    }
+
 	public function installment_report_print($value='')
 	{	
 		$start_date= $this->uri->segment(3);

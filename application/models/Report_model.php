@@ -160,13 +160,15 @@ class Report_model extends CI_model{
   {
     $start=$startdate;
     $end=$enddate;
-    $query1 =  $this->db-> where('cash_book.transaction_type = "in"')
+    $query1 = $this->db->select('sells_log.*,cash_book.*,cash_book.date as dddddd,transaction_info.*,customer_info.*')
+               -> where('cash_book.transaction_type = "in"')
                -> where('cash_book.date >= "'.$start.'"')
                -> where('cash_book.date <= "'.$end.'"')
                ->join('transaction_info', 'transaction_info.transaction_id = cash_book.transaction_id')
                ->join('sells_log', 'sells_log.id = transaction_info.common_id')
                ->join('customer_info', 'customer_info.customer_id = sells_log.customar_id')
-               -> get('cash_book')->result();
+               ->order_by('cash_book.date', 'desc')
+               ->get('cash_book')->result();
     return $query1;
   }
 

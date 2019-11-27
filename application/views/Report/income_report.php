@@ -51,7 +51,7 @@
         <tbody>
           <tr v-for="(i,index) in alldata">
             <td>{{ index+1 }}</td>
-            <td>{{ formatDate(i.date) }}</td>
+            <td>{{ formatDate(i.dddddd) }}</td>
             <td>{{ i.customer_id }}</td>
             <td>{{ i.customer_name }}</td>
             <th>{{ i.transaction_purpose }}</th>

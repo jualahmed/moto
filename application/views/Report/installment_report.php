@@ -51,7 +51,8 @@
 						<th>Chassis No</th>
 						<th>Color</th>
 						<th>Seller</th>
-						<th>Battery No</th>
+            <th>Battery No</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -71,7 +72,8 @@
 						<td>{{ i.chassisno }}</td>
 						<td>{{ i.color }}</td>
 						<td>{{ i.username }}</td>
-						<td>{{ i.batteryno }}</td>	
+            <td>{{ i.batteryno }}</td>  
+						<td><a :href="base_url+'report/deleteinstallment/'+i.all_installment_id" onclick="return confirm('Are Sure want to delete?')" class="btn btn-sm btn-danger">Delete</a></td>	
 						<!-- <th>{{ i.price+i.totalinterest+i.installmentfee }}</th> -->
 						<!-- <th>{{ i.totaldue+i.screchcard+i.discount }}</th> -->
 					</tr>
