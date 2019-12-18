@@ -6,6 +6,7 @@ new Vue({
     startdate:'',
     enddate:'',
     loding:false,
+    amount:0,
   },
   methods:{
     result(){
@@ -22,6 +23,9 @@ new Vue({
       success: function(result) {
         self.loding=!self.loding;
         self.alldata=result;
+          result.forEach( function(element, index) {
+             self.amount=parseInt(element.amount)+parseInt(element.amount);
+          });
       }
     });
     },

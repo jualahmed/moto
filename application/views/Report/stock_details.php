@@ -35,39 +35,41 @@
   	<div class="table-responsive">
   		<table class="table table-secondary">
     		<tr>
-    		    <th>No</th>
-            <th>Challan No</th>
-    		    <th>Date</th>
-    		    <th>Product</th>
+    		    <th style="text-align: center;">No</th>
+            <th style="text-align: center;">Challan No</th>
+    		    <th style="text-align: center;">Date</th>
             <th title="Purchase Quantity">Quantity</th>
-    		    <th>engineno</th>
-    		    <th>chassisno</th>
-    		    <th>color</th>
-    		    <th>BP</th>
-    		    <th>SP</th>
-             <th>Company</th>
-            <th>Category</th>
-    		    <th>batteryno</th>
+    		    <th style="text-align: center;">engineno</th>
+    		    <th style="text-align: center;">chassisno</th>
+    		    <th style="text-align: center;">color</th>
+    		    <th style="text-align: right">BP</th>
+    		    <th style="text-align: right">SP</th>
+            <th style="text-align: center;">Company</th>
+            <th style="text-align: center;">Category</th>
+    		    <th style="text-align: center;">batteryno</th>
+            <th style="text-align: center;">Product</th>
     		</tr>
-  			<tr v-for="(p,index) in alldata">
+  			<tr v-for="(p,index) in alldata" style="text-align: center;">
   				<td>{{ index+1 }}</td>
             <td>{{ p.challan_no }}</td>
   			    <td>{{ p.purchase_date }}</td>
-  			    <td>{{ p.product_name }}</td>
+  			   
             <td title="Purchase Quantity">1</td>
             <td>{{ p.engineno }}</td>
             <td>{{ p.chassisno }}</td>
             <td>{{ p.color }}</td>
-            <td>{{ p.purchase_price }}</td>
-            <td>{{ p.sale_price }}</td>
+            <td style="text-align: right">{{ p.purchase_price }}</td>
+            <td style="text-align: right">{{ p.sale_price }}</td>
 
   			    <td>{{ p.company_name }}</td>
   			    <td>{{ p.catagory_name }}</td>
   			    <td>{{ p.batteryno }}</td>
+            <td>{{ p.product_name }}</td>
   			</tr>
   			<tr>
-  				<td colspan="8"><b></b></td>
+  				<td colspan="3"><b></b></td>
   				<td colspan="1"><b>Total Quantity: {{ stockqty }}</b></td>
+          <td colspan="3"><b></b></td>
   				<td colspan="1"><b>Total Amount: {{ samount }}</b></td>
   				<td colspan="1"><b>Total Sale Amount: {{ amount }}</b></td>
   			</tr>

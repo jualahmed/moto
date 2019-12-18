@@ -40,22 +40,26 @@
       <table class="table">
         <thead>
           <tr>
-            <th>NO</th>
-            <th>Date</th>
-            <th>Customer ID</th>
+            <th style="text-align: center;">NO</th>
+            <th style="text-align: center;">Date</th>
+            <th style="text-align: center;">Customer ID</th>
             <th>Customer Name</th>
             <th>Income Type</th>
-            <th>Amount</th>
+            <th style="text-align: right;">Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(i,index) in alldata">
-            <td>{{ index+1 }}</td>
-            <td>{{ formatDate(i.dddddd) }}</td>
-            <td>{{ i.customer_id }}</td>
+            <td align="center">{{ index+1 }}</td>
+            <td align="center">{{ formatDate(i.dddddd) }}</td>
+            <td align="center">{{ i.customer_id }}</td>
             <td>{{ i.customer_name }}</td>
             <th>{{ i.transaction_purpose }}</th>
-            <th>{{ i.amount }}</th>
+            <th style="text-align: right;">{{ i.amount }}</th>
+          </tr>
+          <tr>
+            <td colspan="5"></td>
+            <td style="text-align: right;"><b>Total: {{ amount }}</b></td>
           </tr>
         </tbody>
       </table>
