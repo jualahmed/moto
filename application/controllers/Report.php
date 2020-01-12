@@ -87,22 +87,22 @@ class Report extends MY_controller
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');
-      $data['bd_date'] = $bd_date;
-      $data['sale_status'] = '';
-      $data['alarming_level'] = FALSE;
-      $data['last_id'] = $this->product_model->getLastInserted();
-      $data['user_name'] = $this->tank_auth->get_username();
-      $data['status'] = '';
-      $data['company'] = $this->company_model->all();
-      $data['product'] = $this->product_model->all();
-      $data['catagory'] = $this->category_model->all();
-      $data['product_specification'] = $this->product_model->product_specification();
-      $data['total_stock_price'] = $this->site_model->total_stock_price();
-      $data['total_stock_sale_price'] = $this->site_model->total_stock_sale_price();
-      $data['total_stock_quantity'] = $this->site_model->total_stock_quantity();
-      $data['product_type'] = $this->product_model->product_type();
-      $data['unit_name'] = $this->product_model->unit_name();
-      $data['posts']= array();
+	  $data['bd_date'] = $bd_date;
+	  $data['sale_status'] = '';
+	  $data['alarming_level'] = FALSE;
+	  $data['last_id'] = $this->product_model->getLastInserted();
+	  $data['user_name'] = $this->tank_auth->get_username();
+	  $data['status'] = '';
+	  $data['company'] = $this->company_model->all();
+	  $data['product'] = $this->product_model->all();
+	  $data['catagory'] = $this->category_model->all();
+	  $data['product_specification'] = $this->product_model->product_specification();
+	  $data['total_stock_price'] = $this->site_model->total_stock_price();
+	  $data['total_stock_sale_price'] = $this->site_model->total_stock_sale_price();
+	  $data['total_stock_quantity'] = $this->site_model->total_stock_quantity();
+	  $data['product_type'] = $this->product_model->product_type();
+	  $data['unit_name'] = $this->product_model->unit_name();
+	  $data['posts']= array();
 			$data['reportdata']=$this->report_model->stock_details();
 			$data['vuejscomp'] = 'stock_details.js';
 			$this->__renderview('Report/stock_details', $data);
@@ -112,11 +112,11 @@ class Report extends MY_controller
 
   public function stock_details_json()
   {
-    $catagory_id= $this->input->post('catagory_id');
-    $product_id= $this->input->post('product_id');
-    $company_id=$this->input->post('company_id');
-    $reportdata=$this->report_model->stock_details($catagory_id,$product_id,$company_id);
-    echo json_encode($reportdata);
+	$catagory_id= $this->input->post('catagory_id');
+	$product_id= $this->input->post('product_id');
+	$company_id=$this->input->post('company_id');
+	$reportdata=$this->report_model->stock_details($catagory_id,$product_id,$company_id);
+	echo json_encode($reportdata);
   }
 
 	public function stock_details_print()
@@ -180,7 +180,7 @@ class Report extends MY_controller
 
 	public function sale_report()
 	{
-	    $data['user_type'] = $this->tank_auth->get_usertype();
+		$data['user_type'] = $this->tank_auth->get_usertype();
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');
@@ -253,13 +253,13 @@ class Report extends MY_controller
 		echo json_encode($temp2);
 	}
 
-    public function deleteinstallment($id='')
-    {
-        $this->db->set('status',0);
-        $this->db->where('all_installment_id', $id);
-        $this->db->update('all_installment');
-        return redirect('report/installment_report','refresh');
-    }
+	public function deleteinstallment($id='')
+	{
+		$this->db->set('status',0);
+		$this->db->where('all_installment_id', $id);
+		$this->db->update('all_installment');
+		return redirect('report/installment_report','refresh');
+	}
 
 	public function installment_report_print($value='')
 	{	
@@ -278,55 +278,63 @@ class Report extends MY_controller
 
   public function customer_sale_report()
   {
-    $data['user_type'] = $this->tank_auth->get_usertype();
-    if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
-    {
-      $bd_date = date('Y-m-d');
-      $data['bd_date'] = $bd_date;
-      $data['sale_status'] = '';
-      $data['alarming_level'] = FALSE;
-      $data['last_id'] = $this->product_model->getLastInserted();
-      $data['user_name'] = $this->tank_auth->get_username();
-      $data['status'] = '';
-      $data['product_specification'] = $this->product_model->product_specification();
-      $data['vuejscomp'] = 'customer_report.js';
-      $data['customer']=$this->customer_model->all();
-      $this->__renderview('Report/customer_sale_report', $data);
-    }
+	$data['user_type'] = $this->tank_auth->get_usertype();
+	if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
+	{
+	  $bd_date = date('Y-m-d');
+	  $data['bd_date'] = $bd_date;
+	  $data['sale_status'] = '';
+	  $data['alarming_level'] = FALSE;
+	  $data['last_id'] = $this->product_model->getLastInserted();
+	  $data['user_name'] = $this->tank_auth->get_username();
+	  $data['status'] = '';
+	  $data['product_specification'] = $this->product_model->product_specification();
+	  $data['vuejscomp'] = 'customer_report.js';
+	  $data['customer']=$this->customer_model->all();
+	  $this->__renderview('Report/customer_sale_report', $data);
+	}
   }
 
   public function customer_report_response()
   {
-    $customer_id=$this->input->post('customer_id');
-    $temp2 = $this->report_model->customer_report_response($customer_id);
-    echo json_encode($temp2);
+	$customer_id=$this->input->post('customer_id');
+	$temp2 = $this->report_model->customer_report_response($customer_id);
+	echo json_encode($temp2);
+  }
+
+  public function customer_reportinstallment($id='')
+  {	
+  	$this->db->where('sells_log_id', $id);
+  	$this->db->order_by('all_installment_id', 'desc');
+  	$date = $this->db->get('all_installment')->result();
+  	echo json_encode($date);
   }
 
   public function income_report()
   {
-    $data['user_type'] = $this->tank_auth->get_usertype();
-    if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
-    {
-      $bd_date = date('Y-m-d');
-      $data['bd_date'] = $bd_date;
-      $data['sale_status'] = '';
-      $data['alarming_level'] = FALSE;
-      $data['last_id'] = $this->product_model->getLastInserted();
-      $data['user_name'] = $this->tank_auth->get_username();
-      $data['status'] = '';
-      $data['product_specification'] = $this->product_model->product_specification();
-      $data['vuejscomp'] = 'income_report.js';
-      $this->__renderview('Report/income_report', $data);
-    }
-    else redirect('Product/product/noaccess');
+	$data['user_type'] = $this->tank_auth->get_usertype();
+	if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
+	{
+	  $bd_date = date('Y-m-d');
+	  $data['bd_date'] = $bd_date;
+	  $data['sale_status'] = '';
+	  $data['alarming_level'] = FALSE;
+	  $data['last_id'] = $this->product_model->getLastInserted();
+	  $data['user_name'] = $this->tank_auth->get_username();
+	  $data['status'] = '';
+	  $data['product_specification'] = $this->product_model->product_specification();
+	  $data['vuejscomp'] = 'income_report.js';
+	  $this->__renderview('Report/income_report', $data);
+	}
+	else redirect('Product/product/noaccess');
   }
 
   public function income_report_response()
   {
-    $start_date=$this->input->post('start_date');
-    $end_date=$this->input->post('end_date');
-    $temp2 = $this->report_model->income_report_response($start_date,$end_date);
-    echo json_encode($temp2);
+	$start_date=$this->input->post('start_date');
+	$end_date=$this->input->post('end_date');
+	$temp2 = $this->report_model->income_report_response($start_date,$end_date);
+	echo json_encode($temp2);
   }
 
 	
@@ -349,21 +357,21 @@ class Report extends MY_controller
 		$data['bd_date'] = date ('Y-m-d');
 		$bd_date = date ('Y-m-d');
 		$data['sale_status'] = '';
-	    $data['status'] = '';
-	    $data['user_type'] = $this->tank_auth->get_usertype();
-	    $data['user_name'] = $this->tank_auth->get_username();
+		$data['status'] = '';
+		$data['user_type'] = $this->tank_auth->get_usertype();
+		$data['user_name'] = $this->tank_auth->get_username();
 		$start_date = $this->uri->segment(3);
-	    $end_date = $this->uri->segment(4);		
-	    if(($start_date!=''&& $end_date=='null'))
-	    {
+		$end_date = $this->uri->segment(4);		
+		if(($start_date!=''&& $end_date=='null'))
+		{
 			$start_date = $start_date;
 			$end_date = $start_date;
-	    }
+		}
 		else if($start_date=='' && $end_date=='')
-	    {
+		{
 			$start_date = $bd_date;
 			$end_date = $bd_date;
-	    }
+		}
 		else
 		{
 			$start_date = $start_date;
@@ -418,7 +426,7 @@ class Report extends MY_controller
 		$data['bank_purchase_payment'] = $this->report_model->todays_purchase_payment_bank($start_date,$end_date);
 		$data['bank_credit_collection'] = $this->report_model->todays_credit_collection_bank($start_date,$end_date);
 		$data['vuejscomp'] = 'scb_report.js';
-	    $this->__renderview('Report/scb_report', $data);
+		$this->__renderview('Report/scb_report', $data);
 	}
 
 	public function download_scb_report()
@@ -428,23 +436,23 @@ class Report extends MY_controller
 		$this->data['bd_date'] = date ('Y-m-d');
 		$bd_date = date ('Y-m-d');
 		$data['sale_status'] = '';
-	    $data['status'] = '';
-	    $data['user_type'] = $this->tank_auth->get_usertype();
-	    $data['user_name'] = $this->tank_auth->get_username();
-	    
-		$start_date = $this->uri->segment(3);
-	    $end_date = $this->uri->segment(4);
+		$data['status'] = '';
+		$data['user_type'] = $this->tank_auth->get_usertype();
+		$data['user_name'] = $this->tank_auth->get_username();
 		
-	    if(($start_date!=''&& $end_date=='null'))
-	    {
+		$start_date = $this->uri->segment(3);
+		$end_date = $this->uri->segment(4);
+		
+		if(($start_date!=''&& $end_date=='null'))
+		{
 			$start_date = $start_date;
 			$end_date = $start_date;
-	    }
+		}
 		else if($start_date=='' && $end_date=='')
-	    {
+		{
 			$start_date = $bd_date;
 			$end_date = $bd_date;
-	    }
+		}
 		else
 		{
 			$start_date = $start_date;
@@ -507,7 +515,7 @@ class Report extends MY_controller
 		$this->data['bank_credit_collection'] = $this->report_model->todays_credit_collection_bank($start_date,$end_date);
 		//Bank Book Report End//
 		
-	    $html=$this->load->view('Download/download_scb_report',$this->data, true); 
+		$html=$this->load->view('Download/download_scb_report',$this->data, true); 
 
 		$this->load->library('m_pdf');
 		ob_start();
@@ -610,7 +618,7 @@ class Report extends MY_controller
 
 	public function  damage_report()
 	{
-	    $data['user_type'] = $this->tank_auth->get_usertype();
+		$data['user_type'] = $this->tank_auth->get_usertype();
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');
@@ -738,7 +746,7 @@ class Report extends MY_controller
 
 	public function credit_collection_report_new()
 	{
-	    $data['user_type'] = $this->tank_auth->get_usertype();
+		$data['user_type'] = $this->tank_auth->get_usertype();
 		if($this->access_control_model->my_access($data['user_type'], 'Product', 'product_entry'))
 		{
 			$bd_date = date('Y-m-d');
@@ -764,7 +772,7 @@ class Report extends MY_controller
 	{
 		date_default_timezone_set("Asia/Dhaka");
 		$bd_date = date('Y-m-d',time());
-	    $data['all_credit_collection'] = $this->report_model->all_credit_collection();
+		$data['all_credit_collection'] = $this->report_model->all_credit_collection();
 		$html=$this->load->view('Download/download_credit_collection',$data, true); 
 		$this->load->library('m_pdf');
 		ob_start();

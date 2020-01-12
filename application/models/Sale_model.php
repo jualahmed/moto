@@ -208,7 +208,7 @@ class Sale_model extends CI_Model {
 		$this->db->where('date', $data->seconddate);
 		$this->db->where('sells_log_id', $data->id);
 		$allins=$this->db->get('all_installment')->row();
-    $this->db->set('status', 0);
+    	$this->db->set('status', 0);
 		$this->db->set('payment_date', $payment_date);
 		$this->db->where('all_installment_id', $allins->all_installment_id);
 		$this->db->update('all_installment');

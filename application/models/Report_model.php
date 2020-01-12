@@ -143,34 +143,34 @@ class Report_model extends CI_model{
 		return $this->db->get('all_installment')->result();
 	}
 
-  public function customer_report_response($customar_id='')
-  {
-    $this->db->select('sells_log.*,sells_log.id as sid ,all_installment.*,product_info.*,warranty_product_list.*,purchase_receipt_info.*,customer_info.*,users.*');
-    $this->db->where('customar_id', $customar_id);
-    $this->db->join('sells_log', 'sells_log.id = all_installment.sells_log_id');
-    $this->db->join('product_info', 'sells_log.product_id = product_info.product_id');
-    $this->db->join('warranty_product_list', 'sells_log.w_product_id = warranty_product_list.ip_id');
-    $this->db->join('purchase_receipt_info', 'warranty_product_list.purchase_receipt_id = purchase_receipt_info.receipt_id');
-    $this->db->join(' users', 'sells_log.creator = users.id');
-    $this->db->join('customer_info', 'sells_log.customar_id = customer_info.customer_id');
-    return $this->db->get('all_installment')->result();
-  }
+ 	 public function customer_report_response($customar_id='')
+  	{
+	    $this->db->select('sells_log.*,sells_log.id as sid ,all_installment.*,product_info.*,warranty_product_list.*,purchase_receipt_info.*,customer_info.*,users.*');
+	    $this->db->where('customar_id', $customar_id);
+	    $this->db->join('sells_log', 'sells_log.id = all_installment.sells_log_id');
+	    $this->db->join('product_info', 'sells_log.product_id = product_info.product_id');
+	    $this->db->join('warranty_product_list', 'sells_log.w_product_id = warranty_product_list.ip_id');
+	    $this->db->join('purchase_receipt_info', 'warranty_product_list.purchase_receipt_id = purchase_receipt_info.receipt_id');
+	    $this->db->join(' users', 'sells_log.creator = users.id');
+	    $this->db->join('customer_info', 'sells_log.customar_id = customer_info.customer_id');
+	    return $this->db->get('all_installment')->result();
+  	}
 
-  public function income_report_response($startdate='',$enddate='')
-  {
-    $start=$startdate;
-    $end=$enddate;
-    $query1 = $this->db->select('sells_log.*,cash_book.*,cash_book.date as dddddd,transaction_info.*,customer_info.*')
-               -> where('cash_book.transaction_type = "in"')
-               -> where('cash_book.date >= "'.$start.'"')
-               -> where('cash_book.date <= "'.$end.'"')
-               ->join('transaction_info', 'transaction_info.transaction_id = cash_book.transaction_id')
-               ->join('sells_log', 'sells_log.id = transaction_info.common_id')
-               ->join('customer_info', 'customer_info.customer_id = sells_log.customar_id')
-               ->order_by('cash_book.date', 'desc')
-               ->get('cash_book')->result();
-    return $query1;
-  }
+	public function income_report_response($startdate='',$enddate='')
+	{
+	    $start=$startdate;
+	    $end=$enddate;
+	    $query1 = $this->db->select('sells_log.*,cash_book.*,cash_book.date as dddddd,transaction_info.*,customer_info.*')
+	               -> where('cash_book.transaction_type = "in"')
+	               -> where('cash_book.date >= "'.$start.'"')
+	               -> where('cash_book.date <= "'.$end.'"')
+	               ->join('transaction_info', 'transaction_info.transaction_id = cash_book.transaction_id')
+	               ->join('sells_log', 'sells_log.id = transaction_info.common_id')
+	               ->join('customer_info', 'customer_info.customer_id = sells_log.customar_id')
+	               ->order_by('cash_book.date', 'desc')
+	               ->get('cash_book')->result();
+	    return $query1;
+	}
 
 
 

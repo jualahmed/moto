@@ -199,7 +199,7 @@
 											<td style="width: 40%;">
 												<b></b> <?php $am =0; if($t>0) $am=($invoiceinfo[0]->permonthpay*$perdaylatecost->pardayrate)/100; $am=$am/365;$am=$am*$t; ?>
 												<form style="margin: auto;margin: 0px;"  action="<?php echo base_url().'sale/installmentsubmit/'.$invoiceinfo[0]->sid ?>">
-                          Payment Date:  <input style="width: 70px;" name="payment_date" id="datepickerrr" type="text" value="<?php echo $value ?>">   
+                         							Payment Date:  <input style="width: 70px;" name="payment_date" id="datepickerrr" type="text" value="<?php echo $value ?>">   
 													Final Discount :
 													<?php 
 														$fiamount=number_format((float)($am)+$invoiceinfo[0]->permonthpay, 2, '.', '');
@@ -218,7 +218,7 @@
 													<?php } ?>
 													<input type="hidden" id="datadddddddd" value="<?php echo $invoiceinfo[0]->sid ?>">
 													<?php if ($i==0){ ?>
-														<input type="hidden" id="permonthpaydd" value="<?php echo $fiamount ?>">
+														<input type="hidden" id="permonthpaydd" value="<?php echo $invoiceinfo[0]->permonthpay ?>">
 														Total: <input id="amount" name="amount" style="width: 100px;" type="text" value="<?php echo $fiamount ?>" >
 													<?php }else{ ?>
 													Total: <input name="amount" style="width: 100px;" type="text" value="<?php echo number_format((float)($am)+$invoiceinfo[0]->permonthpay, 2, '.', ''); ?>" disabled>

@@ -38,7 +38,6 @@
 		<div class="text-center" v-if="loding">
 			<img src="<?php echo base_url();?>assets/img/LoaderIcon.gif" id="loaderIcon"/>
 		</div>
-
 	<section class="content">
 		<div v-if="alldata.length">
 			<div v-for="(i,index) in alldata">
@@ -66,7 +65,8 @@
 						<td></td>
 					</tr>
 				</table>
-
+				
+			
 				<div class="col-md-12 text-center"><h3>Product Info</h3></div>
 				<table class="table">
 					<thead>
@@ -90,6 +90,25 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="col-md-12 text-center"><h3>Installment Details</h3></div>
+					<table class="table table-bordered">
+
+					<tr>
+						<td>Installment Date</td>
+						<td>Amount</td>
+						<td>Status</td>
+					</tr>
+
+					{{ getinstallment(i.sid) }}
+
+					<tr v-fo="i in installment">
+						<td>{{ i.date }}</td>
+						<td>{{ i.amount }}</td>
+						<td> <span v-if="i.status==1">Paid</span><span v-else>Not Paid</span></td>
+					</tr>
+
+				</table>
+
 				<div style="text-align: right;">
 					<table class="table" style="padding: 0px;margin:0px;border: none;width: 300px;margin-right: 0px;">
 						<tr>
